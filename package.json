@@ -1,0 +1,28 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "description": "Ejercicio para aprender a usar XMLHttpRequest con AJAX y JSON",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnaSalazar/PokedexLab.git"
+  },
+  "keywords": [
+    "js",
+    "xhr",
+    "json",
+    "ajax"
+  ],
+  "author": "Ana Salazar <anastephany.salazarguzman@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnaSalazar/PokedexLab/issues"
+  },
+  "homepage": "https://github.com/AnaSalazar/PokedexLab#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
