@@ -1,3 +1,4 @@
+var contadorImagen = 1;
 var cargarPagina = function() {
     cargarPokemones();
     $(document).on("click", ".pokemon", cargarDetallesPokemones);
@@ -10,22 +11,30 @@ var cargarPokemones = function() {
     crearPokemons(pokemons);
   });
 };
+
 var crearPokemons = function(pokemons) {
+  var $section = $('#pokemons');
   pokemons.forEach(function(pokemon) {
-    var $li = $("<li />");
-    var $div = $("<div />");
-    var $img = $("<img />");
+    var $espacioIndividualPokemon = $("<div />");
+    var $imagen = $("<img />");
+    var $parrafo = $("<p />");
 
-    var $ul = $('#pokemons');
+    $section.addClass("center-align");
 
-    $ul.append($li);
-    $ul.append($div);
-    $div.append($img);
-    $img.src="https://dummyimage.com/150x50/000/fff"
-    $li.attr("data-url", pokemon.url);
-    $li.addClass("pokemon");
-    $li.text(pokemon.name);
+    $espacioIndividualPokemon.addClass("pokemon center-align col s3");
+    $espacioIndividualPokemon.attr("data-url", pokemon.url);
 
+    $imagen.attr("src", "assets/images/"+ contadorImagen + ".jpg");
+    $imagen.addClass("center-align responsive-img");
+
+    $parrafo.text(pokemon.name);
+    $parrafo.addClass("center-align");
+
+    $section.append($espacioIndividualPokemon);
+    $espacioIndividualPokemon.append($imagen);
+    $espacioIndividualPokemon.append($parrafo);
+
+    contadorImagen++;
   });
 };
 
