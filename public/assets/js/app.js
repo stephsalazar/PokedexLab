@@ -1,33 +1,15 @@
-// starwars muestra
 var cargarPagina = function() {
     cargarPokemones();
-    $(document).on("click", ".pokemon", mostrarDetallePokemon);
+    $(document).on("click", ".pokemon", cargarDetallesPokemones);
 };
 
 var cargarPokemones = function() {
-    var url ='http://pokeapi.co/api/v2/pokemon/';
-    $.getJSON(url, function(response){
-        var pokemons = response.results;
-        crearPokemons(pokemons);
-    });
+  var url ='http://pokeapi.co/api/v2/pokemon-species/';
+  $.getJSON(url, function(response){
+    var pokemons = response.results;
+    crearPokemons(pokemons);
+  });
 };
-
-var cargarDetallesPokemones = function() {
-    var url = $(this).data('url');
-    $.getJSON(url, function(response){
-        var habilidadPokemon = response.abilities;
-        cargarDetallesHabilidadPokemones(habilidadPokemon);
-    });
-};
-
-var cargarDetallesHabilidadPokemones = function(habilidadPokemon) {
-    var url = $(this).data('url');
-    $.getJSON(url, function(response){
-        var habilidadPokemon = response.ability;
-        mostrarDetallePokemon(habilidadPokemon);
-    });
-};
-
 var crearPokemons = function(pokemons) {
   pokemons.forEach(function(pokemon) {
     var $li = $("<li />");
@@ -47,27 +29,32 @@ var crearPokemons = function(pokemons) {
   });
 };
 
-var plantilla = '<h2>Datos Pokemon</h2>' +
-'<p><strong>Habilidad: </strong>__habilidad__</p>' ;
-// '<p><strong>Clima: </strong>__clima__</p>';
-
-
-var mostrarDetallePokemon = function(habilidadPokemon) {
-    var url = $(this).data('url');
-    var $detallePokemonContenedor = $('#DetallePokemon');
-    $.getJSON(url, function(response) {
-        $detallePokemonContenedor.html(
-        plantilla.replace('__habilidad__', response.ability)
-                // .replace('__clima__', response.climate)
-            );
+var cargarDetallesPokemones = function() {
+  var url = $(this).data('url');
+  console.log(url);
+  $.getJSON(url, function(response){
+    var colorPokemon = response.color.name;
+    var habitatPokemon = response.habitat.name;
+    var shapePokemon = response.shape.name;
+    var generaPokemon = response.genera[0].genus;
+      mostrarDetallePokemon(colorPokemon, habitatPokemon, shapePokemon, generaPokemon);
     });
 };
 
+var mostrarDetallePokemon = function(colorPokemon, habitatPokemon, shapePokemon, generaPokemon) {
+    var $detallePokemonContenedor = $('#DetallePokemon');
+        $detallePokemonContenedor.html(
+        plantilla.replace('__color__', colorPokemon)
+                .replace('__habitat__', habitatPokemon)
+                .replace('__shape__', shapePokemon)
+                .replace('__genera__', generaPokemon)
+            );
+    };
+
+var plantilla = '<h2>Datos Pokemon</h2>' +
+  '<p><strong>Color: </strong>__color__</p>' +
+  '<p><strong>Habitat: </strong>__habitat__</p>' +
+  '<p><strong>Shape: </strong>__shape__</p>' +
+  '<p><strong>Genera: </strong>__genera__</p>';
 
 $(document).ready(cargarPagina);
-
-// starwars
-
-// var mostrarTotalPersonajes = function(total) {
-//     $('#total').text(total);
-// };
