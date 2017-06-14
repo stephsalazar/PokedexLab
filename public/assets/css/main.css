@@ -6,6 +6,7 @@ body {
 }
 
 .pokedex {
+  border-radius: 8%;
   background-color: white;
   width: 70%;
   margin-top: 5%;
@@ -14,6 +15,7 @@ body {
 .estilosModal {
   background-color: #c1f2f1;
   width: 30%;
+  border-radius: 10%;
 }
 
 .imagenModal {
