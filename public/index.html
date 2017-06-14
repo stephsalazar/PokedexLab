@@ -9,18 +9,39 @@
     <link rel="stylesheet" href="assets/css/main.css">
   </head>
   <body>
-    <!--AGREGAR NAV-->
-    <h1>POKEDEX</h1>
-    <section class="container-fluid">
-      <h4>titulito</h4>
-      <section id="pokemons" class="row">
-        
+    <section class="container-fluid center">
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper col s10 red">
+            <a href="#" class="brand-logo center ">POKEDEX</a>
+          </div>
+        </nav>
+      </div>
+      <section id="pokemons" class="row pokedex">
+        <h3 class="subtitulo ">POKEMONES</h3>
       </section>
     </section>
+    <!-- Modal Estructura -->
+    <div id="modal1" class="modal estilosModal">
+      <div class="modal-content">
+        <h4>Información del Pokemón</h4>
+        <div class="row">
+          <div class="col s6">
+            <p><strong>Nombre: </strong><span id="nombre"></span></p>
+            <p><strong>Color: </strong><span id="color"></span></p>
+            <p><strong>Habitat: </strong><span id="habitat"></span></p>
+            <p><strong>Shape: </strong><span id="shape"></span></p>
+            <p><strong>Género: </strong><span id="genero"></span></p>
+          </div>
+          <div class="col s6">
+            <p><span id="imagen"></span></p>
+          </div>
+        </div>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat orange">Cerrar</a>
+      </div>
+    </div>
 
-    <div id="DetallePokemon" class=""></div>
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="assets/js/materialize.min.js"></script>
     <script type="text/javascript" src="assets/js/app.js"></script>
   </body>

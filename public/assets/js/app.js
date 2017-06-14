@@ -1,7 +1,9 @@
 var contadorImagen = 1;
+
 var cargarPagina = function() {
     cargarPokemones();
     $(document).on("click", ".pokemon", cargarDetallesPokemones);
+    $('.modal').modal();
 };
 
 var cargarPokemones = function() {
@@ -14,6 +16,7 @@ var cargarPokemones = function() {
 
 var crearPokemons = function(pokemons) {
   var $section = $('#pokemons');
+
   pokemons.forEach(function(pokemon) {
     var $espacioIndividualPokemon = $("<div />");
     var $imagen = $("<img />");
@@ -21,14 +24,17 @@ var crearPokemons = function(pokemons) {
 
     $section.addClass("center-align");
 
-    $espacioIndividualPokemon.addClass("pokemon center-align col s3");
+    $espacioIndividualPokemon.addClass("pokemon center-align col s4");
     $espacioIndividualPokemon.attr("data-url", pokemon.url);
+    $espacioIndividualPokemon.attr("data-target", "modal1");
+    $espacioIndividualPokemon.attr("data-src", "assets/images/"+ contadorImagen + ".jpg");
 
     $imagen.attr("src", "assets/images/"+ contadorImagen + ".jpg");
     $imagen.addClass("center-align responsive-img");
 
     $parrafo.text(pokemon.name);
     $parrafo.addClass("center-align");
+
 
     $section.append($espacioIndividualPokemon);
     $espacioIndividualPokemon.append($imagen);
@@ -38,32 +44,33 @@ var crearPokemons = function(pokemons) {
   });
 };
 
-var cargarDetallesPokemones = function() {
+var cargarDetallesPokemones = function(contadorImagenModal) {
   var url = $(this).data('url');
-  console.log(url);
+  var src = $(this).data('src');
+  var imagenModal = $("<img />");
+
+  imagenModal.attr("src", src);
+  imagenModal.addClass("imagenModal");
+
   $.getJSON(url, function(response){
+    var nombre = response.name;
     var colorPokemon = response.color.name;
     var habitatPokemon = response.habitat.name;
     var shapePokemon = response.shape.name;
     var generaPokemon = response.genera[0].genus;
-      mostrarDetallePokemon(colorPokemon, habitatPokemon, shapePokemon, generaPokemon);
+
+    mostrarDetallePokemon(nombre, colorPokemon, habitatPokemon, shapePokemon, generaPokemon, imagenModal);
     });
 };
 
-var mostrarDetallePokemon = function(colorPokemon, habitatPokemon, shapePokemon, generaPokemon) {
-    var $detallePokemonContenedor = $('#DetallePokemon');
-        $detallePokemonContenedor.html(
-        plantilla.replace('__color__', colorPokemon)
-                .replace('__habitat__', habitatPokemon)
-                .replace('__shape__', shapePokemon)
-                .replace('__genera__', generaPokemon)
-            );
+var mostrarDetallePokemon = function(nombre, colorPokemon, habitatPokemon, shapePokemon, generaPokemon, imagenModal) {
+
+      $("#nombre").text(nombre);
+      $("#color").text(colorPokemon);
+      $("#habitat").text(habitatPokemon);
+      $("#shape").text(shapePokemon);
+      $("#genero").text(generaPokemon);
+      $("#imagen").html(imagenModal);
     };
 
-var plantilla = '<h2>Datos Pokemon</h2>' +
-  '<p><strong>Color: </strong>__color__</p>' +
-  '<p><strong>Habitat: </strong>__habitat__</p>' +
-  '<p><strong>Shape: </strong>__shape__</p>' +
-  '<p><strong>Genera: </strong>__genera__</p>';
-
-$(document).ready(cargarPagina);
+  $(document).ready(cargarPagina);

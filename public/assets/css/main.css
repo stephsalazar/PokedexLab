@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #3EE51F;
+}
+
+.pokedex {
+  background-color: white;
+  width: 70%;
+  margin-top: 5%;
+}
+
+.estilosModal {
+  background-color: #c1f2f1;
+  width: 30%;
+}
+
+.imagenModal {
+  width: 100%;
+}
