@@ -7,7 +7,7 @@ var cargarPagina = function() {
 };
 
 var cargarPokemones = function() {
-  var url ='http://pokeapi.co/api/v2/pokemon-species/';
+  var url ='https://pokeapi.co/api/v2/pokemon-species/';
   $.getJSON(url, function(response){
     var pokemons = response.results;
     crearPokemons(pokemons);
@@ -44,7 +44,7 @@ var crearPokemons = function(pokemons) {
   });
 };
 
-var cargarDetallesPokemones = function(contadorImagenModal) {
+var cargarDetallesPokemones = function() {
   var url = $(this).data('url');
   var src = $(this).data('src');
   var imagenModal = $("<img />");
@@ -73,4 +73,4 @@ var mostrarDetallePokemon = function(nombre, colorPokemon, habitatPokemon, shape
       $("#imagen").html(imagenModal);
     };
 
-  $(document).ready(cargarPagina);
+$(document).ready(cargarPagina);
